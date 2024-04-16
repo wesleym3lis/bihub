@@ -8,6 +8,8 @@ config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   // Add request interceptor
   axios.interceptors.request.use((config) => {
   console.log('Request:', config);
