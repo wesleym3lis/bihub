@@ -17,7 +17,14 @@ let SearchService = class SearchService {
         const url = `${this.baseUrl}/verses/${version}/random`;
         try {
             const response = await axios_1.default.get(url);
-            return response.data;
+            const responseData = response.data;
+            const filteredData = responseData.map(item => ({
+                name: item.name,
+                chapter: item.chapter,
+                number: item.number,
+                text: item.text,
+            }));
+            return responseData;
         }
         catch (error) {
             throw new Error('Failed to fetch data from external API');
